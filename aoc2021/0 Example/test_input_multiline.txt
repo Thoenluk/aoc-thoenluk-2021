@@ -1,0 +1,4 @@
+A multiline test!
+All of these inputs should be uppercased and returned.
+even this one
+iS tHiS a GoOd TeSt?
