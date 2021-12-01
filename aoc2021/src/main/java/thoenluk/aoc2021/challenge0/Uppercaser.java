@@ -12,5 +12,7 @@ public class Uppercaser implements ChristmasSaver {
     public String saveChristmas(String input) {
         return input.toUpperCase();
     }
-    
+
+    @Override
+    public String saveChristmasAgain(String input) { return input.toUpperCase(); }
 }
