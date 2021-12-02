@@ -10,7 +10,16 @@ import java.util.Map;
  * @author Lukas Thöni lukas.thoeni@gmx.ch
  */
 public class Ut {
+
+    //---- Statics
+
+    public static final String WHITE_SPACE_REGEX = "[\\s\\n\\r]+";
+    public static final String NEWLINE_REGEX = "[\\n\\r]+";
+
     private static final Map<String, Integer> intCache = new HashMap<>();
+
+
+    //---- Methods
 
     public static void print(Object objToPrint) {
         System.out.print(objToPrint);
@@ -41,6 +50,6 @@ public class Ut {
     }
 
     public static String[] splitMultilineString(String multiline) {
-        return multiline.replaceAll("[\\s\\n\\r]+", "\t").split("\t");
+        return multiline.replaceAll(NEWLINE_REGEX, "\n").split("\n");
     }
 }
