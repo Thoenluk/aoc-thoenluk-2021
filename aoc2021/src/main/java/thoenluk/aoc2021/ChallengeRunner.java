@@ -42,7 +42,7 @@ public class ChallengeRunner {
         println("Found " + challengeFolders.length + " challenges: ");
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < challengeFolders.length; i++) {
-            output.append(i).append(":\t").append(challengeFolders[i].getName().replaceAll("\\d|\\s", "")).append("\n");
+            output.append(i).append(":\t").append(challengeFolders[i].getName().replaceAll("\\d\\s+", "")).append("\n");
         }
         output.append("\n").append("Now choose one.");
         println(output.toString());

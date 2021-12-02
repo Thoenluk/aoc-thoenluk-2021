@@ -32,11 +32,15 @@ public class Ut {
     }
 
     public static List<Integer> stringToIntegerList(String stringRepresentation) {
-        String[] lines = stringRepresentation.replaceAll("[\\s\\n\\r]+", "\t").split("\t");
+        String[] lines = splitMultilineString(stringRepresentation);
         List<Integer> parsedList = new ArrayList<>(lines.length);
         for (String line : lines) {
             parsedList.add(cachedParseInt(line));
         }
         return parsedList;
+    }
+
+    public static String[] splitMultilineString(String multiline) {
+        return multiline.replaceAll("[\\s\\n\\r]+", "\t").split("\t");
     }
 }
