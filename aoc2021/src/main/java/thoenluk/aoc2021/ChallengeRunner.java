@@ -35,7 +35,7 @@ public class ChallengeRunner {
 
     private static File[] getChallengeFolders() {
         final File currentFolder = new File("aoc2021");
-        return currentFolder.listFiles(pathname -> pathname.isDirectory() && pathname.getName().matches("\\d+.*"));
+        return currentFolder.listFiles(pathname -> pathname.isDirectory() && pathname.getName().matches("\\d+ .+"));
     }
 
     private static void printChallengeFolderIndices(File[] challengeFolders) {
