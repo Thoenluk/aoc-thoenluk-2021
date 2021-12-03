@@ -6,10 +6,6 @@ import thoenluk.aoc2021.Ut;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeMap;
-import java.util.function.Predicate;
-
-import static thoenluk.aoc2021.Ut.println;
 
 public class DiagnosticParser implements ChristmasSaver {
     @Override
