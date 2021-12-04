@@ -14,7 +14,7 @@ public class Ut {
     //---- Statics
 
     public static final String WHITE_SPACE_REGEX = "[\\s\\n\\r]+";
-    public static final String NEWLINE_REGEX = "[\\n\\r]+";
+    public static final String NEWLINE_REGEX = "\\r?\\n";
 
     private static final Map<String, Integer> intCache = new HashMap<>();
 
@@ -51,5 +51,26 @@ public class Ut {
 
     public static String[] splitMultilineString(String multiline) {
         return multiline.replaceAll(NEWLINE_REGEX, "\n").split("\n");
+    }
+
+    public static class Position {
+
+        // Y coordinate (position on the vertical axis) comes first not only because that is common in computers,
+        // but also because that is how you will end up iterating: First through the array of lines (vertical), then
+        // through the chars of each line (horizontal.)
+        private final int y, x;
+
+        public Position(int y, int x) {
+            this.y = y;
+            this.x = x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public int getX() {
+            return x;
+        }
     }
 }

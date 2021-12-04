@@ -71,13 +71,17 @@ public class ChallengeRunner {
         if (actualInputFiles.length != 1) throw new AssertionError();
         String input = Files.readString(actualInputFiles[0].toPath());
         println("Determined the result for the first challenge is:");
+        long millisBeforeStart = System.currentTimeMillis();
         println(christmasSaver.saveChristmas(input));
+        println("And did it in " + (System.currentTimeMillis() - millisBeforeStart) + "ms!");
 
         println("What fun that was. Running second challenge...");
 
         testChristmasSaver(challengeFolder, christmasSaver::saveChristmasAgain, SECOND_CHALLENGE_SUFFIX);
         println("Determined the result for the second challenge is:");
+        millisBeforeStart = System.currentTimeMillis();
         println(christmasSaver.saveChristmasAgain(input));
+        println("And did it in " + (System.currentTimeMillis() - millisBeforeStart) + "ms!");
     }
 
     // I do not fear what this method does; I fear what kind of further automation I'll think up next year.
