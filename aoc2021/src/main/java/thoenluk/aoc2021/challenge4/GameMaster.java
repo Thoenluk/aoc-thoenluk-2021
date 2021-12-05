@@ -34,20 +34,21 @@ public class GameMaster implements ChristmasSaver {
         lines.remove(0);
 
         Set<BingoBoard> boards = setupBoards(lines);
-        Set<BingoBoard> boardsThatWon = new HashSet<>();
+        Iterator<BingoBoard> it;
+        BingoBoard board;
 
         for (int drawnNumber : drawnNumbers) {
-            for (BingoBoard board : boards) {
+            it = boards.iterator();
+            while (it.hasNext()) {
+                board = it.next();
                 board.markNumber(drawnNumber);
                 if (board.isWin()) {
                     if (boards.size() == 1) {
                         return Integer.toString(drawnNumber * board.getScore());
                     }
-                    boardsThatWon.add(board);
+                    it.remove();
                 }
             }
-            boards.removeAll(boardsThatWon); // I like this line. It amuses me.
-            boardsThatWon.clear();
         }
 
         return null;
