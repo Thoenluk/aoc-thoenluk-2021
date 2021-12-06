@@ -1,12 +1,13 @@
 package thoenluk.aoc2021.challenge4.bingo;
 
-import thoenluk.aoc2021.Ut;
+import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.Ut.Position;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class BingoBoard {
-    private final Map<Integer, Ut.Position> board;
+    private final Map<Integer, Position> board;
     private final int[] markedNumbersInRow;
     private final int[] markedNumbersInColumn;
 
@@ -20,16 +21,16 @@ public class BingoBoard {
         for (y = 0; y < boardRepresentation.length; y++) {
             numbersInRow = boardRepresentation[y].trim().split(Ut.WHITE_SPACE_REGEX);
             for (x = 0; x < numbersInRow.length; x++) {
-                board.put(Ut.cachedParseInt(numbersInRow[x]), new Ut.Position(y, x));
+                board.put(Ut.cachedParseInt(numbersInRow[x]), new Position(y, x));
             }
         }
     }
 
     public void markNumber(int number) {
         if (board.containsKey(number)) {
-            Ut.Position position = board.remove(number);
-            markedNumbersInRow[position.getY()]++;
-            markedNumbersInColumn[position.getX()]++;
+            Position position = board.remove(number);
+            markedNumbersInRow[position.y()]++;
+            markedNumbersInColumn[position.x()]++;
         }
     }
 

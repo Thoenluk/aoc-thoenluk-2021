@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge3;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.Ut;
+import thoenluk.aoc2021.ut.Ut;
 
 import java.util.Arrays;
 import java.util.LinkedList;

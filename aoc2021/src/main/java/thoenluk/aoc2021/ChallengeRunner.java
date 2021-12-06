@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.UnaryOperator;
 
-import static thoenluk.aoc2021.Ut.*;
+import static thoenluk.aoc2021.ut.Ut.*;
 
 /**
  *

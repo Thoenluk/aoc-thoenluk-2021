@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge2;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.Ut;
+import thoenluk.aoc2021.ut.Ut;
 
 public class PilotingModule implements ChristmasSaver {
 

@@ -1,9 +1,6 @@
-package thoenluk.aoc2021;
+package thoenluk.aoc2021.ut;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -40,7 +37,7 @@ public class Ut {
         return intCache.get(stringRepresentation);
     }
 
-    public static List<Integer> stringToIntegerList(String stringRepresentation) {
+    public static List<Integer> multilineStringToIntegerList(String stringRepresentation) {
         String[] lines = splitMultilineString(stringRepresentation);
         List<Integer> parsedList = new ArrayList<>(lines.length);
         for (String line : lines) {
@@ -53,24 +50,18 @@ public class Ut {
         return multiline.replaceAll(NEWLINE_REGEX, "\n").split("\n");
     }
 
-    public static class Position {
-
-        // Y coordinate (position on the vertical axis) comes first not only because that is common in computers,
-        // but also because that is how you will end up iterating: First through the array of lines (vertical), then
-        // through the chars of each line (horizontal.)
-        private final int y, x;
-
-        public Position(int y, int x) {
-            this.y = y;
-            this.x = x;
+    public static List<Integer> commaSeparatedStringToIntegerList(String csv) {
+        String[] tokens = splitCommaSeparatedString(csv);
+        List<Integer> parsedList = new ArrayList<>();
+        for (String token : tokens) {
+            parsedList.add(cachedParseInt(token));
         }
-
-        public int getY() {
-            return y;
-        }
-
-        public int getX() {
-            return x;
-        }
+        return parsedList;
     }
+
+    public static String[] splitCommaSeparatedString(String csv) {
+        return csv.split(",");
+    }
+
+    public record Position(int y, int x) {}
 }

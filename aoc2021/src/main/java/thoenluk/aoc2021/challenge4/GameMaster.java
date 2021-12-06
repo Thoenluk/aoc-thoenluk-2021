@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge4;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.Ut;
+import thoenluk.aoc2021.ut.Ut;
 import thoenluk.aoc2021.challenge4.bingo.BingoBoard;
 
 import java.util.*;
