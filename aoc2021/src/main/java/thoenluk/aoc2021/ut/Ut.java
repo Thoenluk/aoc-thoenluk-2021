@@ -60,7 +60,7 @@ public class Ut {
     }
 
     public static String[] splitCommaSeparatedString(String csv) {
-        return csv.split(",");
+        return csv.replaceAll(NEWLINE_REGEX, "").split(",");
     }
 
     public record Position(int y, int x) {}
