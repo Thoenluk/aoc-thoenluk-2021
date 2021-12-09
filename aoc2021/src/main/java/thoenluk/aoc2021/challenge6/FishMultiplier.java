@@ -9,31 +9,15 @@ import java.util.stream.LongStream;
 public class FishMultiplier implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        List<Integer> fish = Ut.commaSeparatedStringToIntegerList(input);
-        long[] fishByInternalTimers = new long[9];
-        for (Integer individualFish : fish) {
-            fishByInternalTimers[individualFish]++;
-        }
-
-        long fishGivingBirth;
-        int i, n;
-
-        for (i = 0; i < 80; i++) {
-            fishGivingBirth = fishByInternalTimers[0];
-            for (n = 0; n < fishByInternalTimers.length - 1; n++) {
-                fishByInternalTimers[n] = fishByInternalTimers[n + 1];
-            }
-            fishByInternalTimers[6] += fishGivingBirth;
-            fishByInternalTimers[8] = fishGivingBirth;
-        }
-
-        return Long.toString(
-                LongStream.of(fishByInternalTimers)
-                .sum());
+        return Long.toString(breedFish(input, 80));
     }
 
     @Override
     public String saveChristmasAgain(String input) {
+        return Long.toString(breedFish(input, 256));
+    }
+
+    private long breedFish(String input, int days) {
         List<Integer> fish = Ut.commaSeparatedStringToIntegerList(input);
         long[] fishByInternalTimers = new long[9];
         for (Integer individualFish : fish) {
@@ -43,7 +27,7 @@ public class FishMultiplier implements ChristmasSaver {
         long fishGivingBirth;
         int i, n;
 
-        for (i = 0; i < 256; i++) {
+        for (i = 0; i < days; i++) {
             fishGivingBirth = fishByInternalTimers[0];
             for (n = 0; n < fishByInternalTimers.length - 1; n++) {
                 fishByInternalTimers[n] = fishByInternalTimers[n + 1];
@@ -52,8 +36,7 @@ public class FishMultiplier implements ChristmasSaver {
             fishByInternalTimers[8] = fishGivingBirth;
         }
 
-        return Long.toString(
-                LongStream.of(fishByInternalTimers)
-                        .sum());
+        return LongStream.of(fishByInternalTimers)
+                .sum();
     }
 }
