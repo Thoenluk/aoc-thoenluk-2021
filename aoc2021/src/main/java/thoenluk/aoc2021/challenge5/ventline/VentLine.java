@@ -1,5 +1,6 @@
 package thoenluk.aoc2021.challenge5.ventline;
 
+import thoenluk.aoc2021.ut.Position;
 import thoenluk.aoc2021.ut.Ut;
 
 import java.util.LinkedList;
@@ -20,18 +21,18 @@ public class VentLine {
             return startingX == endingX || startingY == endingY;
         }
 
-        public List<Ut.Position> getPositionsOfPointsInLine() {
+        public List<Position> getPositionsOfPointsInLine() {
             final int normalisedXDirection = Math.round(Math.signum(endingX - startingX));
             final int normalisedYDirection = Math.round(Math.signum(endingY - startingY));
-            List<Ut.Position> positions = new LinkedList<>();
+            List<Position> positions = new LinkedList<>();
             int y = startingY, x = startingX;
 
-            positions.add(new Ut.Position(y, x));
+            positions.add(new Position(y, x));
 
             while (!(y == endingY && x == endingX)) {
                 y += normalisedYDirection;
                 x += normalisedXDirection;
-                positions.add(new Ut.Position(y, x));
+                positions.add(new Position(y, x));
             }
 
             return positions;

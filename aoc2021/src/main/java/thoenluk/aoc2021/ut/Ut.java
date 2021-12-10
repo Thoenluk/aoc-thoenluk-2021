@@ -13,7 +13,8 @@ public class Ut {
     public static final String WHITE_SPACE_REGEX = "[\\s\\n\\r]+";
     public static final String NEWLINE_REGEX = "\\r?\\n";
 
-    private static final Map<String, Integer> intCache = new HashMap<>();
+    private static final Map<String, Integer> STRING_INTEGER_CACHE = new HashMap<>();
+    private static final Map<Character, Integer> CHAR_INTEGER_CACHE = new HashMap<>();
 
 
     //---- Methods
@@ -31,10 +32,11 @@ public class Ut {
     }
 
     public static int cachedParseInt(String stringRepresentation) {
-        if (!intCache.containsKey(stringRepresentation)) {
-            intCache.put(stringRepresentation, Integer.parseInt(stringRepresentation));
-        }
-        return intCache.get(stringRepresentation);
+        return STRING_INTEGER_CACHE.computeIfAbsent(stringRepresentation, Integer::parseInt);
+    }
+
+    public static int cachedGetNumericValue(char charRepresentation) {
+        return CHAR_INTEGER_CACHE.computeIfAbsent(charRepresentation, Character::getNumericValue);
     }
 
     public static List<Integer> multilineStringToIntegerList(String stringRepresentation) {
@@ -63,5 +65,4 @@ public class Ut {
         return csv.replaceAll(NEWLINE_REGEX, "").split(",");
     }
 
-    public record Position(int y, int x) {}
 }

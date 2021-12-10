@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge4.bingo;
 
 import thoenluk.aoc2021.ut.Ut;
-import thoenluk.aoc2021.ut.Ut.Position;
+import thoenluk.aoc2021.ut.Position;
 
 import java.util.HashMap;
 import java.util.Map;
