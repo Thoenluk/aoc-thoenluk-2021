@@ -1,9 +1,12 @@
 package thoenluk.aoc2021;
 
+import thoenluk.aoc2021.ut.Ut;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.UnaryOperator;
@@ -35,14 +38,23 @@ public class ChallengeRunner {
 
     private static File[] getChallengeFolders() {
         final File currentFolder = new File("aoc2021");
-        return currentFolder.listFiles(pathname -> pathname.isDirectory() && pathname.getName().matches("\\d+ .+"));
+        final File[] challengeFolders = currentFolder.listFiles(pathname -> pathname.isDirectory() && pathname.getName().matches("\\d+ .+"));
+        if (challengeFolders == null) throw new AssertionError();
+
+        Arrays.sort(challengeFolders, (o1, o2) -> {
+            final int number1 = Ut.cachedParseInt(o1.getName().split(" ")[0]);
+            final int number2 = Ut.cachedParseInt(o2.getName().split(" ")[0]);
+            return number1 - number2;
+        });
+
+        return challengeFolders;
     }
 
     private static void printChallengeFolderIndices(File[] challengeFolders) {
         println("Found " + challengeFolders.length + " challenges: ");
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < challengeFolders.length; i++) {
-            output.append(i).append(":\t").append(challengeFolders[i].getName().replaceAll("\\d\\s+", "")).append("\n");
+            output.append(i).append(":\t").append(challengeFolders[i].getName().replaceAll("\\d+\\s+", "")).append("\n");
         }
         output.append("\n").append("Now choose one.");
         println(output.toString());

@@ -31,6 +31,28 @@ public class Ut {
         System.out.println(objToPrint);
     }
 
+    public static int overflowSafeSum(int... summands) {
+        int result = 0;
+        for (int summand : summands) {
+            if (Integer.MAX_VALUE - result < summand) {
+                throw new AssertionError("Sum would overflow! Use a long instead.");
+            }
+            result += summand;
+        }
+        return result;
+    }
+
+    public static int overflowSafeProduct(int... multiplicands) {
+        int result = 1;
+        for (int multiplicand : multiplicands) {
+            if (Integer.MAX_VALUE / result <= multiplicand) {
+                throw new AssertionError("Product would overflow! Use a long instead.");
+            }
+            result *= multiplicand;
+        }
+        return result;
+    }
+
     public static int cachedParseInt(String stringRepresentation) {
         return STRING_INTEGER_CACHE.computeIfAbsent(stringRepresentation, Integer::parseInt);
     }
@@ -64,5 +86,4 @@ public class Ut {
     public static String[] splitCommaSeparatedString(String csv) {
         return csv.replaceAll(NEWLINE_REGEX, "").split(",");
     }
-
 }
