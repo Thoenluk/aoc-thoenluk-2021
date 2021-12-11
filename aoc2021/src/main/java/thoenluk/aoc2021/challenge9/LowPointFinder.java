@@ -11,8 +11,8 @@ import static thoenluk.aoc2021.ut.Position.NeighbourDirection.CARDINAL;
 public class LowPointFinder implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        final Map<Position, Integer> heightMap = new HashMap<>();
-        final Set<Position> lowPoints = findLowPoints(input, heightMap);
+        final Map<Position, Integer> heightMap = Ut.multilineStringToPositionIntegerMap(input);
+        final Set<Position> lowPoints = findLowPoints(heightMap);
 
         int riskLevelSum = 0;
 
@@ -25,8 +25,8 @@ public class LowPointFinder implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        Map<Position, Integer> heightMap = new HashMap<>();
-        final Set<Position> lowPoints = findLowPoints(input, heightMap);
+        Map<Position, Integer> heightMap = Ut.multilineStringToPositionIntegerMap(input);
+        final Set<Position> lowPoints = findLowPoints(heightMap);
 
         List<Integer> threeLargestBasinSizes = new ArrayList<>(Arrays.asList(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE));
         final Set<Position> basin = new HashSet<>();
@@ -66,20 +66,11 @@ public class LowPointFinder implements ChristmasSaver {
         return Integer.toString(product);
     }
 
-    private Set<Position> findLowPoints(String input, Map<Position, Integer> heightMap) {
-        final String[] lines = Ut.splitMultilineString(input);
-
-        int y, x;
+    private Set<Position> findLowPoints(Map<Position, Integer> heightMap) {
         int height;
         int neighbourHeight;
 
         final Set<Position> lowPoints = new HashSet<>();
-
-        for (y = 0; y < lines.length; y++) {
-            for (x = 0; x < lines[y].length(); x++) {
-                heightMap.put(new Position(y, x), Ut.cachedGetNumericValue(lines[y].charAt(x)));
-            }
-        }
 
         lowPointSearch:
         for (Position position: heightMap.keySet()) {

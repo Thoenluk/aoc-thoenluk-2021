@@ -70,6 +70,21 @@ public class Ut {
         return parsedList;
     }
 
+    public static Map<Position, Integer> multilineStringToPositionIntegerMap(String stringRepresentation) {
+        Map<Position, Integer> map = new HashMap<>();
+        int y, x;
+
+        String[] lines = splitMultilineString(stringRepresentation);
+
+        for (y = 0; y < lines.length; y++) {
+            for (x = 0; x < lines[y].length(); x++) {
+                map.put(new Position(y, x), Ut.cachedGetNumericValue(lines[y].charAt(x)));
+            }
+        }
+
+        return map;
+    }
+
     public static String[] splitMultilineString(String multiline) {
         return multiline.replaceAll(NEWLINE_REGEX, "\n").split("\n");
     }
