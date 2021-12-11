@@ -79,8 +79,10 @@ public class ChallengeRunner {
         testChristmasSaver(challengeFolder, christmasSaver::saveChristmas, FIRST_CHALLENGE_SUFFIX);
 
         final File[] actualInputFiles = challengeFolder.listFiles((dir, name) -> name.equals("input.txt"));
+
         if (actualInputFiles == null) throw new AssertionError();
         if (actualInputFiles.length != 1) throw new AssertionError();
+
         String input = Files.readString(actualInputFiles[0].toPath());
         println("Determined the result for the first challenge is:");
         long millisBeforeStart = System.currentTimeMillis();
@@ -99,9 +101,13 @@ public class ChallengeRunner {
     // I do not fear what this method does; I fear what kind of further automation I'll think up next year.
     private static ChristmasSaver getChristmasSaverForChallenge(int challenge) throws Exception {
         final File challengeClassFolder = new File("aoc2021\\src\\main\\java\\thoenluk\\aoc2021\\challenge" + challenge);
-        if ((!challengeClassFolder.isDirectory())) throw new AssertionError();
+
+        if (!challengeClassFolder.isDirectory()) throw new AssertionError();
+
         final File[] potentialChallengeClasses = challengeClassFolder.listFiles(file -> file.isFile() && file.getName().endsWith(".java"));
+
         if ((Objects.requireNonNull(potentialChallengeClasses).length != 1)) throw new AssertionError();
+
         final String challengeClassPath = potentialChallengeClasses[0].getPath();
         
         final String challengeClassPackageName = 
@@ -123,14 +129,18 @@ public class ChallengeRunner {
     private static void testChristmasSaver(File challengeFolder, UnaryOperator<String> savingMethod, String challengeSuffix) throws IOException {
         final String inputPrefix = "test" + challengeSuffix + "_input";
         final String outputPrefix = "test" + challengeSuffix + "_output";
+
         final File[] testInputs = challengeFolder.listFiles((File dir, String fileName) -> fileName.startsWith(inputPrefix));
         final File[] testOutputs = challengeFolder.listFiles((File dir, String fileName) -> fileName.startsWith(outputPrefix));
+
         if (testInputs == null) throw new AssertionError();
         if (testOutputs == null) throw new AssertionError();
+
         if ((testInputs.length != testOutputs.length)) throw new AssertionError();
 
         Arrays.sort(testInputs);
         Arrays.sort(testOutputs);
+
         for (int i = 0; i < testInputs.length; i++) {
             final File testInput = testInputs[i];
             final File testOutput = testOutputs[i];
@@ -139,6 +149,7 @@ public class ChallengeRunner {
             final String testInputString = Files.readString(testInput.toPath());
             final String testOutputString = Files.readString(testOutput.toPath());
             final String actualOutput = savingMethod.apply(testInputString);
+
             if (!actualOutput.equals(testOutputString)) {
                 StringBuilder message = new StringBuilder();
                 message.append("Failed test ").append(testInput.getName()).append("!\n")
@@ -151,6 +162,7 @@ public class ChallengeRunner {
                 println(message);
                 throw new AssertionError();
             }
+
             println("Matched " + testOutput.getName());
         }
     }
