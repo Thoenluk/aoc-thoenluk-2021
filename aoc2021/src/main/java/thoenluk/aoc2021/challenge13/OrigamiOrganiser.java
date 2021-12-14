@@ -11,7 +11,7 @@ public class OrigamiOrganiser implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
         final String[] lines = Ut.splitMultilineString(input);
-        final int emptyLinePosition = getEmptyLinePositionInArray(lines);
+        final int emptyLinePosition = Ut.getEmptyLinePositionInArray(lines);
 
         final String[] dotInstructions = Arrays.copyOfRange(lines, 0, emptyLinePosition);
         final String[] foldInstructions = Arrays.copyOfRange(lines, emptyLinePosition + 1, lines.length);
@@ -26,7 +26,7 @@ public class OrigamiOrganiser implements ChristmasSaver {
     @Override
     public String saveChristmasAgain(String input) {
         final String[] lines = Ut.splitMultilineString(input);
-        final int emptyLinePosition = getEmptyLinePositionInArray(lines);
+        final int emptyLinePosition = Ut.getEmptyLinePositionInArray(lines);
 
         final String[] dotInstructions = Arrays.copyOfRange(lines, 0, emptyLinePosition);
         final String[] foldInstructions = Arrays.copyOfRange(lines, emptyLinePosition + 1, lines.length);
@@ -65,15 +65,6 @@ public class OrigamiOrganiser implements ChristmasSaver {
         }
 
         return output.toString();
-    }
-
-    private int getEmptyLinePositionInArray(String[] lines) {
-        for (int i = 0; i < lines.length; i++) {
-            if (lines[i].isBlank()) {
-                return i;
-            }
-        }
-        throw new IllegalStateException("Input array does not contain a blank line!");
     }
 
     private Set<Position> parseDotInstructions(String[] dotInstructions) {

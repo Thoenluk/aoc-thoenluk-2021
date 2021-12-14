@@ -101,4 +101,13 @@ public class Ut {
     public static String[] splitCommaSeparatedString(String csv) {
         return csv.replaceAll(NEWLINE_REGEX, "").split(",");
     }
+
+    public static int getEmptyLinePositionInArray(String[] lines) {
+        for (int i = 0; i < lines.length; i++) {
+            if (lines[i].isBlank()) {
+                return i;
+            }
+        }
+        throw new IllegalStateException("Input array does not contain a blank line!");
+    }
 }
