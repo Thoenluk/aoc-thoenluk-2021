@@ -14,6 +14,7 @@ public class Ut {
     public static final String NEWLINE_REGEX = "\\r?\\n";
 
     private static final Map<String, Integer> STRING_INTEGER_CACHE = new HashMap<>();
+    private static final Map<String, Long> STRING_LONG_CACHE = new HashMap<>();
     private static final Map<Character, Integer> CHAR_INTEGER_CACHE = new HashMap<>();
 
 
@@ -55,6 +56,26 @@ public class Ut {
 
     public static int cachedParseInt(String stringRepresentation) {
         return STRING_INTEGER_CACHE.computeIfAbsent(stringRepresentation, Integer::parseInt);
+    }
+
+    public static int cachedParseInt(String stringRepresentation, int radix) {
+        if (!STRING_INTEGER_CACHE.containsKey(stringRepresentation)) {
+            STRING_INTEGER_CACHE.put(stringRepresentation, Integer.parseInt(stringRepresentation, radix));
+        }
+
+        return STRING_INTEGER_CACHE.get(stringRepresentation);
+    }
+
+    public static long cachedParseLong(String stringRepresentation) {
+        return STRING_LONG_CACHE.computeIfAbsent(stringRepresentation, Long::parseLong);
+    }
+
+    public static long cachedParseLong(String stringRepresentation, int radix) {
+        if (!STRING_LONG_CACHE.containsKey(stringRepresentation)) {
+            STRING_LONG_CACHE.put(stringRepresentation, Long.parseLong(stringRepresentation, radix));
+        }
+
+        return STRING_LONG_CACHE.get(stringRepresentation);
     }
 
     public static int cachedGetNumericValue(char charRepresentation) {
