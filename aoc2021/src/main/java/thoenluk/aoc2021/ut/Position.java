@@ -8,9 +8,13 @@ public record Position(int y, int x) {
     public Set<Position> getNeighbours(NeighbourDirection neighbourDirection) {
         Set<Position> neighbours = new HashSet<>();
         for (Position direction : neighbourDirection.getDirections()) {
-            neighbours.add(new Position(this.y + direction.y(), this.x + direction.x()));
+            neighbours.add(offsetBy(direction));
         }
         return neighbours;
+    }
+
+    public Position offsetBy(Position offset) {
+        return new Position(this.y + offset.y(), this.x + offset.x());
     }
 
     public enum NeighbourDirection {
