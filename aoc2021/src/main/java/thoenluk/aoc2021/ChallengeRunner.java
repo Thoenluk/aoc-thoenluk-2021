@@ -1,5 +1,6 @@
 package thoenluk.aoc2021;
 
+import thoenluk.aoc2021.challenge16.packet.transpiled.TranspiledPacket1;
 import thoenluk.aoc2021.ut.Ut;
 
 import java.io.File;
@@ -30,8 +31,8 @@ public class ChallengeRunner {
 
         printChallengeFolderIndices(challengeFolders);
 
-
         final int selectedChallenge = getSelectedChallengeFromUser(challengeFolders.length);
+
 
         testAndRunChristmasSaver(challengeFolders[selectedChallenge], selectedChallenge);
     }

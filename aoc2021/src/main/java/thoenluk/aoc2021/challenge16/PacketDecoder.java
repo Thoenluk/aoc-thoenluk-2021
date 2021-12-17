@@ -2,6 +2,7 @@ package thoenluk.aoc2021.challenge16;
 
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.challenge16.packet.Packet;
+import thoenluk.aoc2021.challenge16.packet.PacketToJavaTranspiler;
 import thoenluk.aoc2021.ut.Ut;
 
 import java.util.*;
@@ -21,6 +22,7 @@ public class PacketDecoder implements ChristmasSaver {
 
     private Packet parseInput(String input) {
         final LinkedList<Character> encodedData = new LinkedList<>();
+
         for (Character token : input.toCharArray()) {
             final int intValue = Ut.cachedGetNumericValue(token);
             final String binary = String.format("%4s", Integer.toBinaryString(intValue)).replace(' ', '0');
@@ -31,6 +33,12 @@ public class PacketDecoder implements ChristmasSaver {
                             .toArray(Character[]::new));
         }
 
-        return new Packet(encodedData);
+        PacketToJavaTranspiler transpiler = PacketToJavaTranspiler.INSTANCE;
+        transpiler.init();
+
+        Packet packet = new Packet(encodedData, transpiler);
+        transpiler.finish()
+                .writeToFile();
+        return packet;
     }
 }
