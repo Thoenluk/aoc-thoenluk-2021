@@ -6,9 +6,14 @@ import java.util.Queue;
 
 public class Pair implements SnailfishNumber {
 
+    //---- Fields
+
     private SnailfishNumber left;
     private SnailfishNumber right;
     private Pair parent;
+
+
+    //---- Constructors
 
     public Pair(Queue<Character> encodedData, Pair parent) {
         left = getNextNumberInEncodedData(encodedData);
@@ -31,6 +36,9 @@ public class Pair implements SnailfishNumber {
 
         this.parent = parent;
     }
+
+
+    //---- Methods
 
     @Override
     public SnailfishNumber copy() {

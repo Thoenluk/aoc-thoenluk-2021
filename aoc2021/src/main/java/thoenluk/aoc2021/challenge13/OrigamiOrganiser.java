@@ -10,11 +10,9 @@ import java.util.function.UnaryOperator;
 public class OrigamiOrganiser implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        final String[] lines = Ut.splitMultilineString(input);
-        final int emptyLinePosition = Ut.getEmptyLinePositionInArray(lines);
-
-        final String[] dotInstructions = Arrays.copyOfRange(lines, 0, emptyLinePosition);
-        final String[] foldInstructions = Arrays.copyOfRange(lines, emptyLinePosition + 1, lines.length);
+        final String[] instructions = Ut.splitStringWithEmptyLines(input);
+        final String[] dotInstructions = Ut.splitMultilineString(instructions[0]);
+        final String[] foldInstructions = Ut.splitMultilineString(instructions[1]);
 
         Set<Position> dots = parseDotInstructions(dotInstructions);
 
@@ -25,11 +23,9 @@ public class OrigamiOrganiser implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        final String[] lines = Ut.splitMultilineString(input);
-        final int emptyLinePosition = Ut.getEmptyLinePositionInArray(lines);
-
-        final String[] dotInstructions = Arrays.copyOfRange(lines, 0, emptyLinePosition);
-        final String[] foldInstructions = Arrays.copyOfRange(lines, emptyLinePosition + 1, lines.length);
+        final String[] instructions = Ut.splitStringWithEmptyLines(input);
+        final String[] dotInstructions = Ut.splitMultilineString(instructions[0]);
+        final String[] foldInstructions = Ut.splitMultilineString(instructions[1]);
 
         Set<Position> dots = parseDotInstructions(dotInstructions);
 

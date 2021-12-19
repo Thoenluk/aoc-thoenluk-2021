@@ -17,11 +17,10 @@ public class Polymerisationizer implements ChristmasSaver {
     }
 
     private String solveForIterationCount(String input, int iterationCount) {
-        final String[] lines = Ut.splitMultilineString(input);
-        final int emptyLineIndex = Ut.getEmptyLinePositionInArray(lines);
+        final String[] instructions = Ut.splitStringWithEmptyLines(input);
 
-        final String polymerTemplate = lines[0];
-        final Map<String, String> pairInsertionRules = parsePairInsertionRules(lines, emptyLineIndex + 1);
+        final String polymerTemplate = instructions[0];
+        final Map<String, String> pairInsertionRules = parsePairInsertionRules(Ut.splitMultilineString(instructions[1]));
 
         Map<String, Long> polymer = new HashMap<>();
         Map<String, Long> nextPolymer = new HashMap<>();
@@ -71,12 +70,12 @@ public class Polymerisationizer implements ChristmasSaver {
         // but only with this approach while brute-force was fine. Praise to the one who explains to me why.
     }
 
-    private Map<String, String> parsePairInsertionRules(String[] lines, int startIndex) {
+    private Map<String, String> parsePairInsertionRules(String[] lines) {
         final Map<String, String> pairInsertionRules = new HashMap<>();
         String[] keyValue;
 
-        for (int i = startIndex; i < lines.length; i++) {
-            keyValue = lines[i].split(" -> ");
+        for (String line : lines) {
+            keyValue = line.split(" -> ");
             pairInsertionRules.put(keyValue[0], keyValue[1]);
         }
 

@@ -2,13 +2,21 @@ package thoenluk.aoc2021.challenge18.numbers;
 
 public class RegularNumber implements SnailfishNumber {
 
+    //---- Fields
+
     private int value;
     private Pair parent;
+
+
+    //---- Constructor
 
     public RegularNumber(int value, Pair parent) {
         this.value = value;
         this.parent = parent;
     }
+
+
+    //---- Methods
 
     @Override
     public SnailfishNumber checkForExploding(int nestingDepth) {
