@@ -1,7 +1,8 @@
 package thoenluk.aoc2021.challenge19.scanner;
 
 import thoenluk.aoc2021.ut.ThreeDPosition;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.*;
 import java.util.function.UnaryOperator;
@@ -19,11 +20,11 @@ public class Scanner {
     //---- Constructor
 
     public Scanner(String data) {
-        final String[] lines = Ut.splitMultilineString(data);
+        final String[] lines = UtStrings.splitMultilineString(data);
         List<Integer> coordinates;
 
         for (int i = 1; i < lines.length; i++) {
-            coordinates = Ut.commaSeparatedStringToIntegerList(lines[i]);
+            coordinates = UtParsing.commaSeparatedStringToIntegerList(lines[i]);
             if (coordinates.size() != 3) throw new AssertionError();
             beacons.add(new Beacon(
                             new ThreeDPosition(

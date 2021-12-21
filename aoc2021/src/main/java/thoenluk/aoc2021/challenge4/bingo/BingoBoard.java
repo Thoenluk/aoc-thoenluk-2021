@@ -1,7 +1,8 @@
 package thoenluk.aoc2021.challenge4.bingo;
 
-import thoenluk.aoc2021.ut.Ut;
 import thoenluk.aoc2021.ut.Position;
+import thoenluk.aoc2021.ut.UtParsing;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,14 +15,14 @@ public class BingoBoard {
     public BingoBoard(String[] boardRepresentation) {
         this.board = new HashMap<>();
         this.markedNumbersInRow = new int[boardRepresentation.length];
-        this.markedNumbersInColumn = new int[boardRepresentation[0].trim().split(Ut.WHITE_SPACE_REGEX).length];
+        this.markedNumbersInColumn = new int[boardRepresentation[0].trim().split(UtStrings.WHITE_SPACE_REGEX).length];
 
         int y, x;
         String[] numbersInRow;
         for (y = 0; y < boardRepresentation.length; y++) {
-            numbersInRow = boardRepresentation[y].trim().split(Ut.WHITE_SPACE_REGEX);
+            numbersInRow = boardRepresentation[y].trim().split(UtStrings.WHITE_SPACE_REGEX);
             for (x = 0; x < numbersInRow.length; x++) {
-                board.put(Ut.cachedParseInt(numbersInRow[x]), new Position(y, x));
+                board.put(UtParsing.cachedParseInt(numbersInRow[x]), new Position(y, x));
             }
         }
     }

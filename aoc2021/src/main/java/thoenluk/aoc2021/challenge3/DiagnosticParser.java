@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge3;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -10,7 +10,7 @@ import java.util.List;
 public class DiagnosticParser implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        final String[] lines = Ut.splitMultilineString(input);
+        final String[] lines = UtStrings.splitMultilineString(input);
         final int individualLineLength = lines[0].length();
         final int[] numberOfOnesPerPosition = new int[individualLineLength];
         final int leastCountForMajority = (lines.length + 1) / 2;
@@ -46,7 +46,7 @@ public class DiagnosticParser implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        final String[] lines = Ut.splitMultilineString(input);
+        final String[] lines = UtStrings.splitMultilineString(input);
 
         List<String> potentialOxygenGeneratorRatings = new LinkedList<>(Arrays.asList(lines));
         List<String> potentialCO2ScrubberRatings = new LinkedList<>(Arrays.asList(lines));

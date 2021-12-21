@@ -1,10 +1,9 @@
 package thoenluk.aoc2021.challenge8;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static java.util.Map.entry;
 
@@ -25,14 +24,14 @@ public class WireDespaghettifier implements ChristmasSaver {
 
     @Override
     public String saveChristmas(String input) {
-        final String[] lines = Ut.splitMultilineString(input);
+        final String[] lines = UtStrings.splitMultilineString(input);
 
         int trivialDigitsInOutput = 0;
 
         for (String line : lines) {
             final String[] signalPatternsAndOutput = line.split(" \\| ");
             trivialDigitsInOutput += Arrays.stream(
-                    signalPatternsAndOutput[1].split(Ut.WHITE_SPACE_REGEX))
+                    signalPatternsAndOutput[1].split(UtStrings.WHITE_SPACE_REGEX))
                     .filter((digit) -> digit.length() <= 4 || digit.length() == 7)
                     .count();
         }
@@ -41,7 +40,7 @@ public class WireDespaghettifier implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        final String[] lines = Ut.splitMultilineString(input);
+        final String[] lines = UtStrings.splitMultilineString(input);
         int sum = 0;
 
         for (String line : lines) {
@@ -54,7 +53,7 @@ public class WireDespaghettifier implements ChristmasSaver {
     }
 
     private Map<Character, Character> getSegmentMappings(String entry) {
-        List<String> signalPatterns = new ArrayList<>(Arrays.asList(entry.split(Ut.WHITE_SPACE_REGEX)));
+        List<String> signalPatterns = new ArrayList<>(Arrays.asList(entry.split(UtStrings.WHITE_SPACE_REGEX)));
         signalPatterns.sort(Comparator.comparing(String::length));
 
         final String one = signalPatterns.get(0);
@@ -123,7 +122,7 @@ public class WireDespaghettifier implements ChristmasSaver {
     }
 
     private int parseOutputValueWithMappings(String outputValue, Map<Character, Character> mappings) {
-        final String[] digits = outputValue.split(Ut.WHITE_SPACE_REGEX);
+        final String[] digits = outputValue.split(UtStrings.WHITE_SPACE_REGEX);
         int parsedValue = 0;
 
         for (String digit : digits) {

@@ -3,7 +3,7 @@ package thoenluk.aoc2021.challenge17;
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.ut.Area;
 import thoenluk.aoc2021.ut.Position;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
 
 import java.util.*;
 
@@ -53,8 +53,8 @@ public class SuperCoolProbeLauncher69000TronDeluxe implements ChristmasSaver {
         String[] coordinates = input.replaceAll("[^-\\d]", " ")
                 .trim()
                 .split("\s+");
-        Position topLeft = new Position(Ut.cachedParseInt(coordinates[2]), Ut.cachedParseInt(coordinates[0]));
-        Position bottomRight = new Position(Ut.cachedParseInt(coordinates[3]), Ut.cachedParseInt(coordinates[1]));
+        Position topLeft = new Position(UtParsing.cachedParseInt(coordinates[2]), UtParsing.cachedParseInt(coordinates[0]));
+        Position bottomRight = new Position(UtParsing.cachedParseInt(coordinates[3]), UtParsing.cachedParseInt(coordinates[1]));
 
         return new Area(topLeft, bottomRight);
     }

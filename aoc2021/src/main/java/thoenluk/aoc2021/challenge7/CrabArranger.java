@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge7;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
 
 import java.util.Comparator;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public class CrabArranger implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        List<Integer> crabs = Ut.commaSeparatedStringToIntegerList(input);
+        List<Integer> crabs = UtParsing.commaSeparatedStringToIntegerList(input);
         crabs.sort(null);
 
         int optimalPosition;
@@ -34,7 +34,7 @@ public class CrabArranger implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        List<Integer> crabs = Ut.commaSeparatedStringToIntegerList(input);
+        List<Integer> crabs = UtParsing.commaSeparatedStringToIntegerList(input);
         int furthestCrabPosition = crabs.stream().max(Comparator.naturalOrder()).orElseThrow();
 
         int optimalFuelCost = Integer.MAX_VALUE;

@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge5.ventline;
 
 import thoenluk.aoc2021.ut.Position;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,10 +11,10 @@ public class VentLine {
 
         public VentLine(String inputLine) {
             String[] coordinates = inputLine.split(",| -> ");
-            this.startingX = Ut.cachedParseInt(coordinates[0]);
-            this.startingY = Ut.cachedParseInt(coordinates[1]);
-            this.endingX = Ut.cachedParseInt(coordinates[2]);
-            this.endingY = Ut.cachedParseInt(coordinates[3]);
+            this.startingX = UtParsing.cachedParseInt(coordinates[0]);
+            this.startingY = UtParsing.cachedParseInt(coordinates[1]);
+            this.endingX = UtParsing.cachedParseInt(coordinates[2]);
+            this.endingY = UtParsing.cachedParseInt(coordinates[3]);
         }
 
         public boolean isHorizontalOrVertical() {

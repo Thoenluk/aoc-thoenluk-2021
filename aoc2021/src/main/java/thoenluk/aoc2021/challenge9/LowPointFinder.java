@@ -2,7 +2,7 @@ package thoenluk.aoc2021.challenge9;
 
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.ut.Position;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ import static thoenluk.aoc2021.ut.Position.NeighbourDirection.CARDINAL;
 public class LowPointFinder implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        final Map<Position, Integer> heightMap = Ut.multilineStringToPositionIntegerMap(input);
+        final Map<Position, Integer> heightMap = UtParsing.multilineStringToPositionIntegerMap(input);
         final Set<Position> lowPoints = findLowPoints(heightMap);
 
         int riskLevelSum = 0;
@@ -25,7 +25,7 @@ public class LowPointFinder implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        Map<Position, Integer> heightMap = Ut.multilineStringToPositionIntegerMap(input);
+        Map<Position, Integer> heightMap = UtParsing.multilineStringToPositionIntegerMap(input);
         final Set<Position> lowPoints = findLowPoints(heightMap);
 
         List<Integer> threeLargestBasinSizes = new ArrayList<>(Arrays.asList(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE));

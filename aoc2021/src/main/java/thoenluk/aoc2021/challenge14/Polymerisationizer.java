@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge14;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.*;
 
@@ -17,10 +17,10 @@ public class Polymerisationizer implements ChristmasSaver {
     }
 
     private String solveForIterationCount(String input, int iterationCount) {
-        final String[] instructions = Ut.splitStringWithEmptyLines(input);
+        final String[] instructions = UtStrings.splitStringWithEmptyLines(input);
 
         final String polymerTemplate = instructions[0];
-        final Map<String, String> pairInsertionRules = parsePairInsertionRules(Ut.splitMultilineString(instructions[1]));
+        final Map<String, String> pairInsertionRules = parsePairInsertionRules(UtStrings.splitMultilineString(instructions[1]));
 
         Map<String, Long> polymer = new HashMap<>();
         Map<String, Long> nextPolymer = new HashMap<>();

@@ -2,7 +2,7 @@ package thoenluk.aoc2021.challenge12;
 
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.challenge12.cave.Cave;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.*;
 
@@ -30,7 +30,7 @@ public class CaveNavigatorJohnson implements ChristmasSaver {
     }
 
     private Cave parseCaveNetworkAndReturnStart(String input) {
-        final String[] lines = Ut.splitMultilineString(input);
+        final String[] lines = UtStrings.splitMultilineString(input);
         Map<String, Cave> caveNetwork = new HashMap<>();
 
         for (String line : lines) {

@@ -2,7 +2,9 @@ package thoenluk.aoc2021.challenge15;
 
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.ut.Position;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtMath;
+import thoenluk.aoc2021.ut.UtParsing;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.*;
 
@@ -11,7 +13,7 @@ import static thoenluk.aoc2021.ut.Position.NeighbourDirection.CARDINAL;
 public class ChitonNavigator implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        final Map<Position, Integer> individualRiskLevels = Ut.multilineStringToPositionIntegerMap(input);
+        final Map<Position, Integer> individualRiskLevels = UtParsing.multilineStringToPositionIntegerMap(input);
         final Map<Position, Integer> lowestTotalRisks = computeLowestTotalRisks(individualRiskLevels);
 
         return Integer.toString(getRiskLevelOfBottomRightNode(lowestTotalRisks));
@@ -66,8 +68,8 @@ public class ChitonNavigator implements ChristmasSaver {
     }
 
     private Map<Position, Integer> computeIndividualRiskLevelsEnlarged(String input) {
-        final Map<Position, Integer> individualRiskLevelsTemplate = Ut.multilineStringToPositionIntegerMap(input);
-        final String[] lines = Ut.splitMultilineString(input);
+        final Map<Position, Integer> individualRiskLevelsTemplate = UtParsing.multilineStringToPositionIntegerMap(input);
+        final String[] lines = UtStrings.splitMultilineString(input);
 
         final Map<Position, Integer> individualRiskLevels = new HashMap<>();
 
@@ -82,9 +84,7 @@ public class ChitonNavigator implements ChristmasSaver {
                 for (int yRepetitions = 0; yRepetitions < 5; yRepetitions++) {
                     position = new Position(templatePosition.y() + yRepetitions * ySize, templatePosition.x() + xRepetitions * xSize);
                     riskLevel = templateRiskLevel + xRepetitions + yRepetitions;
-                    riskLevel -= 1;
-                    riskLevel %= 9;
-                    riskLevel += 1;
+                    riskLevel = UtMath.wrap(riskLevel, 9);
 
                     individualRiskLevels.put(position, riskLevel);
                 }

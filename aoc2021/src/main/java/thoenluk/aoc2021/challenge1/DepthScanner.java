@@ -1,14 +1,14 @@
 package thoenluk.aoc2021.challenge1;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
 
 import java.util.List;
 
 public class DepthScanner implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        final List<Integer> depths = Ut.multilineStringToIntegerList(input);
+        final List<Integer> depths = UtParsing.multilineStringToIntegerList(input);
         int previousDepth = Integer.MAX_VALUE;
         int largerMeasurements = 0;
 
@@ -24,7 +24,7 @@ public class DepthScanner implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        final List<Integer> depths = Ut.multilineStringToIntegerList(input);
+        final List<Integer> depths = UtParsing.multilineStringToIntegerList(input);
 
         // This operation is technically pointless as I know depths will be an ArrayList. But since the API only specifies
         // it will be a list and random access on a LinkedList would be very bad, instead convert it to array.

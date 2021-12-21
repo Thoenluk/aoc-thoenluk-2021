@@ -2,7 +2,8 @@ package thoenluk.aoc2021.challenge13;
 
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.ut.Position;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.*;
 import java.util.function.UnaryOperator;
@@ -10,9 +11,9 @@ import java.util.function.UnaryOperator;
 public class OrigamiOrganiser implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        final String[] instructions = Ut.splitStringWithEmptyLines(input);
-        final String[] dotInstructions = Ut.splitMultilineString(instructions[0]);
-        final String[] foldInstructions = Ut.splitMultilineString(instructions[1]);
+        final String[] instructions = UtStrings.splitStringWithEmptyLines(input);
+        final String[] dotInstructions = UtStrings.splitMultilineString(instructions[0]);
+        final String[] foldInstructions = UtStrings.splitMultilineString(instructions[1]);
 
         Set<Position> dots = parseDotInstructions(dotInstructions);
 
@@ -23,9 +24,9 @@ public class OrigamiOrganiser implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        final String[] instructions = Ut.splitStringWithEmptyLines(input);
-        final String[] dotInstructions = Ut.splitMultilineString(instructions[0]);
-        final String[] foldInstructions = Ut.splitMultilineString(instructions[1]);
+        final String[] instructions = UtStrings.splitStringWithEmptyLines(input);
+        final String[] dotInstructions = UtStrings.splitMultilineString(instructions[0]);
+        final String[] foldInstructions = UtStrings.splitMultilineString(instructions[1]);
 
         Set<Position> dots = parseDotInstructions(dotInstructions);
 
@@ -69,7 +70,7 @@ public class OrigamiOrganiser implements ChristmasSaver {
 
         for (String dot : dotInstructions) {
             coordinates = dot.split(",");
-            dots.add(new Position(Ut.cachedParseInt(coordinates[1]), Ut.cachedParseInt(coordinates[0])));
+            dots.add(new Position(UtParsing.cachedParseInt(coordinates[1]), UtParsing.cachedParseInt(coordinates[0])));
         }
 
         return dots;
@@ -80,7 +81,7 @@ public class OrigamiOrganiser implements ChristmasSaver {
 
         final String[] tokens = foldInstruction.split("[ =]");
         final String direction = tokens[2];
-        final int axis = Ut.cachedParseInt(tokens[3]);
+        final int axis = UtParsing.cachedParseInt(tokens[3]);
 
         final UnaryOperator<Position> folder;
 

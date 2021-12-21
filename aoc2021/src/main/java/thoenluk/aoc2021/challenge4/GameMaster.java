@@ -1,15 +1,16 @@
 package thoenluk.aoc2021.challenge4;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.ut.Ut;
 import thoenluk.aoc2021.challenge4.bingo.BingoBoard;
+import thoenluk.aoc2021.ut.UtParsing;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.*;
 
 public class GameMaster implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        List<String> lines = new LinkedList<>(Arrays.asList(Ut.splitMultilineString(input)));
+        List<String> lines = new LinkedList<>(Arrays.asList(UtStrings.splitMultilineString(input)));
         List<Integer> drawnNumbers = parseDrawnNumbers(lines.remove(0));
         lines.remove(0);
 
@@ -29,7 +30,7 @@ public class GameMaster implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        List<String> lines = new LinkedList<>(Arrays.asList(Ut.splitMultilineString(input)));
+        List<String> lines = new LinkedList<>(Arrays.asList(UtStrings.splitMultilineString(input)));
         List<Integer> drawnNumbers = parseDrawnNumbers(lines.remove(0));
         lines.remove(0);
 
@@ -58,7 +59,7 @@ public class GameMaster implements ChristmasSaver {
         List<Integer> drawnNumbers = new LinkedList<>();
         String[] drawnNumberTokens = drawnNumbersLine.split(",");
         for (String token : drawnNumberTokens) {
-            drawnNumbers.add(Ut.cachedParseInt(token));
+            drawnNumbers.add(UtParsing.cachedParseInt(token));
         }
         return drawnNumbers;
     }

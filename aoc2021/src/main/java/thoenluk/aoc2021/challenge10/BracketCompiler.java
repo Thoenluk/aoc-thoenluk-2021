@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge10;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class BracketCompiler implements ChristmasSaver {
 
     @Override
     public String saveChristmas(String input) {
-        String[] lines = Ut.splitMultilineString(input);
+        String[] lines = UtStrings.splitMultilineString(input);
 
         int score = 0;
 
@@ -49,7 +49,7 @@ public class BracketCompiler implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        String[] lines = Ut.splitMultilineString(input);
+        String[] lines = UtStrings.splitMultilineString(input);
         List<Long> autocompleteScores = new ArrayList<>();
         long score;
 

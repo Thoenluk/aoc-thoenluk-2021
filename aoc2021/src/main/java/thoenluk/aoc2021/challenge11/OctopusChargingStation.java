@@ -2,7 +2,7 @@ package thoenluk.aoc2021.challenge11;
 
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.ut.Position;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ import static thoenluk.aoc2021.ut.Position.NeighbourDirection.OMNIDIRECTIONAL;
 public class OctopusChargingStation implements ChristmasSaver {
     @Override
     public String saveChristmas(String input) {
-        final Map<Position, Integer> octopuses = Ut.multilineStringToPositionIntegerMap(input);
+        final Map<Position, Integer> octopuses = UtParsing.multilineStringToPositionIntegerMap(input);
         final List<Position> octopodesReadyToFlash = new LinkedList<>();
         int totalFlashes = 0;
 
@@ -64,7 +64,7 @@ public class OctopusChargingStation implements ChristmasSaver {
 
     @Override
     public String saveChristmasAgain(String input) {
-        final Map<Position, Integer> octopuses = Ut.multilineStringToPositionIntegerMap(input);
+        final Map<Position, Integer> octopuses = UtParsing.multilineStringToPositionIntegerMap(input);
         final List<Position> octopodesReadyToFlash = new LinkedList<>();
 
         for (int i = 1; true; i++) {

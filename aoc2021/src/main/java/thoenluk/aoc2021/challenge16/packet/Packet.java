@@ -1,12 +1,12 @@
 package thoenluk.aoc2021.challenge16.packet;
 
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import static thoenluk.aoc2021.ut.Ut.println;
+import static thoenluk.aoc2021.ut.UtStrings.println;
 
 public class Packet {
 
@@ -108,7 +108,7 @@ public class Packet {
 
         gatherBits(encodedData, length, stringRepresentation);
 
-        return Ut.cachedParseInt(stringRepresentation.toString(), 2);
+        return UtParsing.cachedParseInt(stringRepresentation.toString(), 2);
     }
 
     private void gatherBits(Queue<Character> encodedData, int length, StringBuilder target) {
@@ -156,7 +156,7 @@ public class Packet {
 
         gatherBits(encodedData, 4, stringRepresentation);
 
-        return Ut.cachedParseLong(stringRepresentation.toString(), 2);
+        return UtParsing.cachedParseLong(stringRepresentation.toString(), 2);
     }
 
     private long greaterThan() {

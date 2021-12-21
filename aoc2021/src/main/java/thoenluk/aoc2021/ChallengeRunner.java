@@ -1,18 +1,15 @@
 package thoenluk.aoc2021;
 
-import thoenluk.aoc2021.challenge16.packet.transpiled.TranspiledPacket1;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.UnaryOperator;
-
-import static thoenluk.aoc2021.ut.Ut.*;
 
 /**
  *
@@ -26,7 +23,7 @@ public class ChallengeRunner {
     private final static String SECOND_CHALLENGE_SUFFIX = "2";
 
     public static void main(String[] args) throws Exception {
-        println("Scanning for challenge folders...");
+        UtStrings.println("Scanning for challenge folders...");
         final File[] challengeFolders = getChallengeFolders();
 
         printChallengeFolderIndices(challengeFolders);
@@ -43,8 +40,8 @@ public class ChallengeRunner {
         if (challengeFolders == null) throw new AssertionError();
 
         Arrays.sort(challengeFolders, (o1, o2) -> {
-            final int number1 = Ut.cachedParseInt(o1.getName().split(" ")[0]);
-            final int number2 = Ut.cachedParseInt(o2.getName().split(" ")[0]);
+            final int number1 = UtParsing.cachedParseInt(o1.getName().split(" ")[0]);
+            final int number2 = UtParsing.cachedParseInt(o2.getName().split(" ")[0]);
             return number1 - number2;
         });
 
@@ -52,13 +49,13 @@ public class ChallengeRunner {
     }
 
     private static void printChallengeFolderIndices(File[] challengeFolders) {
-        println("Found " + challengeFolders.length + " challenges: ");
+        UtStrings.println("Found " + challengeFolders.length + " challenges: ");
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < challengeFolders.length; i++) {
             output.append(i).append(":\t").append(challengeFolders[i].getName().replaceAll("\\d+\\s+", "")).append("\n");
         }
         output.append("\n").append("Now choose one.");
-        println(output.toString());
+        UtStrings.println(output.toString());
     }
 
     private static int getSelectedChallengeFromUser(int highestPossibleChallenge) {
@@ -67,7 +64,7 @@ public class ChallengeRunner {
             selectedChallenge = USER_INPUT.nextInt();
 
             if (selectedChallenge < 0 || highestPossibleChallenge < selectedChallenge) {
-                println("Only and exactly one of the above numbers shalt thou choose.");
+                UtStrings.println("Only and exactly one of the above numbers shalt thou choose.");
                 selectedChallenge = -1;
             }
         }
@@ -85,18 +82,18 @@ public class ChallengeRunner {
         if (actualInputFiles.length != 1) throw new AssertionError();
 
         String input = Files.readString(actualInputFiles[0].toPath());
-        println("Determined the result for the first challenge is:");
+        UtStrings.println("Determined the result for the first challenge is:");
         long millisBeforeStart = System.currentTimeMillis();
-        println(christmasSaver.saveChristmas(input));
-        println("And did it in " + (System.currentTimeMillis() - millisBeforeStart) + "ms!");
+        UtStrings.println(christmasSaver.saveChristmas(input));
+        UtStrings.println("And did it in " + (System.currentTimeMillis() - millisBeforeStart) + "ms!");
 
-        println("What fun that was. Running second challenge...");
+        UtStrings.println("What fun that was. Running second challenge...");
 
         testChristmasSaver(challengeFolder, christmasSaver::saveChristmasAgain, SECOND_CHALLENGE_SUFFIX);
-        println("Determined the result for the second challenge is:");
+        UtStrings.println("Determined the result for the second challenge is:");
         millisBeforeStart = System.currentTimeMillis();
-        println(christmasSaver.saveChristmasAgain(input));
-        println("And did it in " + (System.currentTimeMillis() - millisBeforeStart) + "ms!");
+        UtStrings.println(christmasSaver.saveChristmasAgain(input));
+        UtStrings.println("And did it in " + (System.currentTimeMillis() - millisBeforeStart) + "ms!");
     }
 
     // I do not fear what this method does; I fear what kind of further automation I'll think up next year.
@@ -146,7 +143,7 @@ public class ChallengeRunner {
             final File testInput = testInputs[i];
             final File testOutput = testOutputs[i];
 
-            print("Running test " + testInput.getName() + "... ");
+            UtStrings.print("Running test " + testInput.getName() + "... ");
             final String testInputString = Files.readString(testInput.toPath());
             final String testOutputString = Files.readString(testOutput.toPath());
             final String actualOutput = savingMethod.apply(testInputString);
@@ -160,11 +157,11 @@ public class ChallengeRunner {
                         .append(testOutputString).append("\n\n")
                         .append("But actual output was:\n")
                         .append(actualOutput);
-                println(message);
+                UtStrings.println(message);
                 throw new AssertionError();
             }
 
-            println("Matched " + testOutput.getName());
+            UtStrings.println("Matched " + testOutput.getName());
         }
     }
 }

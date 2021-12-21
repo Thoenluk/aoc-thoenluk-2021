@@ -2,7 +2,7 @@ package thoenluk.aoc2021.challenge20;
 
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.ut.Position;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class ImageEnhancer implements ChristmasSaver {
     }
 
     private int solveForIterationCount(String input, int iterationCount) {
-        final String[] data = Ut.splitStringWithEmptyLines(input);
+        final String[] data = UtStrings.splitStringWithEmptyLines(input);
 
         final int[] enhancementAlgorithm = parseEnhancementAlgorithm(data[0]);
         Map<Position, Integer> image = parseImage(data[1], iterationCount);
@@ -60,7 +60,7 @@ public class ImageEnhancer implements ChristmasSaver {
     }
 
     private Map<Position, Integer> parseImage(String imageData, int padding) {
-        final String[] lines = Ut.splitMultilineString(imageData);
+        final String[] lines = UtStrings.splitMultilineString(imageData);
         final Map<Position, Integer> image = new HashMap<>();
 
         for (int y = 0; y < lines.length; y++) {

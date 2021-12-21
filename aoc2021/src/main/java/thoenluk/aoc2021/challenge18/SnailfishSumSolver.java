@@ -2,7 +2,7 @@ package thoenluk.aoc2021.challenge18;
 
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.challenge18.numbers.Pair;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,7 +58,7 @@ public class SnailfishSumSolver implements ChristmasSaver {
 
     private List<Pair> parseInput(String input) {
         LinkedList<Character> encodedData = new LinkedList<>();
-        String[] lines = Ut.splitMultilineString(input);
+        String[] lines = UtStrings.splitMultilineString(input);
 
         List<Pair> pairs = new ArrayList<>();
 

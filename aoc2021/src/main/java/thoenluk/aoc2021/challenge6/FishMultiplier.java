@@ -1,7 +1,7 @@
 package thoenluk.aoc2021.challenge6;
 
 import thoenluk.aoc2021.ChristmasSaver;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
 
 import java.util.List;
 import java.util.stream.LongStream;
@@ -18,7 +18,7 @@ public class FishMultiplier implements ChristmasSaver {
     }
 
     private long breedFish(String input, int days) {
-        List<Integer> fish = Ut.commaSeparatedStringToIntegerList(input);
+        List<Integer> fish = UtParsing.commaSeparatedStringToIntegerList(input);
         long[] fishByInternalTimers = new long[9];
         for (Integer individualFish : fish) {
             fishByInternalTimers[individualFish]++;

@@ -3,7 +3,7 @@ package thoenluk.aoc2021.challenge19;
 import thoenluk.aoc2021.ChristmasSaver;
 import thoenluk.aoc2021.challenge19.scanner.Scanner;
 import thoenluk.aoc2021.ut.ThreeDPosition;
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtStrings;
 
 import java.util.*;
 
@@ -45,7 +45,7 @@ public class CelestialNavigator implements ChristmasSaver {
     }
 
     private List<Scanner> parseAndCanonisiseScanners(String input) {
-        String[] scannerDatas = Ut.splitStringWithEmptyLines(input);
+        String[] scannerDatas = UtStrings.splitStringWithEmptyLines(input);
         List<Scanner> discordantScanners = new ArrayList<>();
 
         for (String scannerData : scannerDatas) {

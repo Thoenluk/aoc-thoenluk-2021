@@ -1,58 +1,14 @@
 package thoenluk.aoc2021.ut;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-/**
- *
- * @author Lukas Thöni lukas.thoeni@gmx.ch
- */
-public class Ut {
-
-    //---- Statics
-
-    public static final String WHITE_SPACE_REGEX = "[\\s\\n\\r]+";
-    public static final String NEWLINE_REGEX = "\\r?\\n";
-
+public class UtParsing {
     private static final Map<String, Integer> STRING_INTEGER_CACHE = new HashMap<>();
     private static final Map<String, Long> STRING_LONG_CACHE = new HashMap<>();
     private static final Map<Character, Integer> CHAR_INTEGER_CACHE = new HashMap<>();
-
-
-    //---- Methods
-
-    public static void print(Object objToPrint) {
-        System.out.print(objToPrint);
-    }
-    
-    public static void println() {
-        System.out.println();
-    }
-    
-    public static void println(Object objToPrint) {
-        System.out.println(objToPrint);
-    }
-
-    public static int overflowSafeSum(int... summands) {
-        int result = 0;
-        for (int summand : summands) {
-            if (Integer.MAX_VALUE - result < summand) {
-                throw new AssertionError("Sum would overflow! Use a long instead.");
-            }
-            result += summand;
-        }
-        return result;
-    }
-
-    public static int overflowSafeProduct(int... multiplicands) {
-        int result = 1;
-        for (int multiplicand : multiplicands) {
-            if (Integer.MAX_VALUE / result <= multiplicand) {
-                throw new AssertionError("Product would overflow! Use a long instead.");
-            }
-            result *= multiplicand;
-        }
-        return result;
-    }
 
     public static int cachedParseInt(String stringRepresentation) {
         return STRING_INTEGER_CACHE.computeIfAbsent(stringRepresentation, Integer::parseInt);
@@ -83,7 +39,7 @@ public class Ut {
     }
 
     public static List<Integer> multilineStringToIntegerList(String stringRepresentation) {
-        String[] lines = splitMultilineString(stringRepresentation);
+        String[] lines = UtStrings.splitMultilineString(stringRepresentation);
         List<Integer> parsedList = new ArrayList<>(lines.length);
         for (String line : lines) {
             parsedList.add(cachedParseInt(line));
@@ -95,35 +51,23 @@ public class Ut {
         Map<Position, Integer> map = new HashMap<>();
         int y, x;
 
-        String[] lines = splitMultilineString(stringRepresentation);
+        String[] lines = UtStrings.splitMultilineString(stringRepresentation);
 
         for (y = 0; y < lines.length; y++) {
             for (x = 0; x < lines[y].length(); x++) {
-                map.put(new Position(y, x), Ut.cachedGetNumericValue(lines[y].charAt(x)));
+                map.put(new Position(y, x), cachedGetNumericValue(lines[y].charAt(x)));
             }
         }
 
         return map;
     }
 
-    public static String[] splitMultilineString(String multiline) {
-        return multiline.replaceAll(NEWLINE_REGEX, "\n").split("\n");
-    }
-
-    public static String[] splitStringWithEmptyLines(String emptyLineSeparatedString) {
-        return emptyLineSeparatedString.replaceAll(NEWLINE_REGEX, "\n").split("\n\n");
-    }
-
     public static List<Integer> commaSeparatedStringToIntegerList(String csv) {
-        String[] tokens = splitCommaSeparatedString(csv);
+        String[] tokens = UtStrings.splitCommaSeparatedString(csv);
         List<Integer> parsedList = new ArrayList<>();
         for (String token : tokens) {
             parsedList.add(cachedParseInt(token));
         }
         return parsedList;
-    }
-
-    public static String[] splitCommaSeparatedString(String csv) {
-        return csv.replaceAll(NEWLINE_REGEX, "").split(",");
     }
 }

@@ -1,6 +1,6 @@
 package thoenluk.aoc2021.challenge18.numbers;
 
-import thoenluk.aoc2021.ut.Ut;
+import thoenluk.aoc2021.ut.UtParsing;
 
 import java.util.Queue;
 
@@ -51,7 +51,7 @@ public class Pair implements SnailfishNumber {
             return new Pair(encodedData, this);
         }
         else {
-            return new RegularNumber(Ut.cachedGetNumericValue(initial), this);
+            return new RegularNumber(UtParsing.cachedGetNumericValue(initial), this);
         }
     }
 
