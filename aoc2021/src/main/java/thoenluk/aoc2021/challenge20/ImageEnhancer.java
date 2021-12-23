@@ -33,7 +33,7 @@ public class ImageEnhancer implements ChristmasSaver {
                 newImage.put(pixel,
                         enhancementAlgorithm[
                                 getOutputPixelIndex(pixel, image, enhancementAlgorithm[0] == 0 ? 0 : i % 2)
-                                ]
+                        ]
                 );
             }
 
