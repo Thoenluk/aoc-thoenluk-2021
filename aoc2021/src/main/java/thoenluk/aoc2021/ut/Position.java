@@ -7,6 +7,11 @@ import java.util.Set;
 
 public record Position(int y, int x) {
 
+    public int getDistanceFrom(Position other) {
+        return Math.abs(x() - other.x())
+                + Math.abs(y() - other.y());
+    }
+
     public List<Position> getNeighbours(NeighbourDirection neighbourDirection) {
         List<Position> neighbours = new LinkedList<>();
         for (Position direction : neighbourDirection.getDirections()) {
