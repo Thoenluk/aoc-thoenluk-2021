@@ -64,8 +64,10 @@ public class AmphipodArranger implements ChristmasSaver {
             My solution works. Provably. It's what gets the first result. All that it needs is a perfect system to eliminate
             duplicate steps, i.e. not adding a step if it can already be reached with the same or lower cost, while
             maintaining a pre-sorted order of steps to efficiently pick the next one. This can be done with a PriorityQueue,
-            but my initial implementation was still slow and buggy when I sped it up. It's hard to make judgments on whether
-            to wait, of course - ask Turing.
+            but my initial implementation was still slow and buggy when I sped it up. Presumably all it would need is a
+            simultaneously maintained Map from the burrow to the lowest energy cost that gets it there. Use that to quickly
+            check if a step already has a path to it and use the PriorityQueue to quickly get the lowest total cost step.
+            It's hard to make judgments on whether to wait, of course - ask Turing.
 
             The point is, at this point, I've spent well over 16 hours obsessing over this, possibly over 24, and I've
             learned what I'm going to. I know what the solution is, given sufficient time my solution gets the correct answer,
